@@ -31,6 +31,14 @@ claude code prefixes plugin commands and agents, so `/poteto-mode` is `/pstack:p
 
 claude code installs a generated copy of pstack, including this readme and the guide, from [`harness/pstack/`](https://github.com/cursor/plugins/tree/main/harness/pstack) at the repository root. after you change pstack, run `node scripts/generate-pstack-harness-trees.mjs` from the repository root and commit the result. ci fails while the generated copy is out of date.
 
+in antigravity:
+
+```bash
+node scripts/install-pstack-antigravity.mjs
+```
+
+that renders `pstack/` directly into `~/.gemini/config/plugins/pstack/` (preserving any existing `rules/pstack-models.md`; pass `--out <dir>` or `--reset-models` as needed) without duplicating skills into `harness/pstack/`. antigravity loads `~/.gemini/config/plugins/pstack/` on the next turn (manage it with `/plugin`). the [antigravity adapter](./docs/harness/antigravity.md) maps cursor tools, subagents, paths, and model roles (`~/.gemini/config/plugins/pstack/rules/pstack-models.md`, defaulting to `inherit`), exposes all command skills for auto-discovery (renaming `swarm` to `pstack-swarm` so it does not shadow antigravity's built-in swarm), and keeps `principle-*` skills on demand. in the antigravity cli, `/poteto-mode` is `/pstack:poteto-mode` and `/setup-pstack` is `/pstack:setup-pstack`.
+
 ## get started
 
 two steps:
